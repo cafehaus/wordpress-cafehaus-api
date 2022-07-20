@@ -6,15 +6,15 @@ Version: 0.0.1
 Author: cafehaus
 */
 
-function cafe_rest_hello_callback() {
-    return 'hello ~';
-}
+define('RestApiWpCafePlugin_DIR', plugin_dir_path(__FILE__));
+include(RestApiWpCafePlugin_DIR . 'includes/api/article.php');
 
-function cafe_rest_register_route() {
-    register_rest_route( 'cafe/v1', 'hello', [
-        'methods'   => 'GET',
-        'callback'  => 'cafe_rest_hello_callback'
-    ] );
-}
+if ( !class_exists( 'RestApiWpCafePlugin' ) ) {
+    class RestApiWpCafePlugin {
+        public function __construct() {
+            add_action('rest_api_init', 'get_articles_route');
+        }
+    }
 
-add_action('rest_api_init', 'cafe_rest_register_route');
+    new RestApiWpCafePlugin();
+}
