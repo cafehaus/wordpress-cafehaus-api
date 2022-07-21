@@ -7,12 +7,12 @@ Author: cafehaus
 */
 
 define('RestApiWpCafePlugin_DIR', plugin_dir_path(__FILE__));
-include(RestApiWpCafePlugin_DIR . 'includes/api/article.php');
+include(RestApiWpCafePlugin_DIR . 'includes/api/api.php');
 
 if ( !class_exists( 'RestApiWpCafePlugin' ) ) {
     class RestApiWpCafePlugin {
         public function __construct() {
-            add_action('rest_api_init', 'get_articles_route');
+            new CAFE_API();
         }
     }
 
