@@ -13,14 +13,19 @@ class Article extends WP_REST_Controller{
         register_rest_route( $this->namespace, 'article', [
             'methods'   => 'GET',
             'callback'  =>  array( $this, 'get_article_Detail' ),
+            'args'      => array(
+                'id' => array(
+                    'required' => true
+                ),
+            )
         ] );
     }
 
     // 获取文章列表
     public function get_articles($request) {
         $query_params = $request->get_query_params();
-        $page = $query_params['page'] || 1;
-        $posts_per_page = $query_params['size'] || 10;
+        $page = $query_params['page'] ?: 1;
+        $posts_per_page = $query_params['size'] ?: 10;
 
         $args = array(
             'posts_per_page'    => $posts_per_page,
@@ -29,7 +34,7 @@ class Article extends WP_REST_Controller{
             'order'             => 'desc',
         );
 
-        $query = new WP_Query( $args ); 
+        $query = new WP_Query( $args );
         $max_pages = $query->max_num_pages;
         $total = $query->found_posts;
         $posts = $query->posts;
@@ -55,7 +60,7 @@ class Article extends WP_REST_Controller{
         $result["data"] = $data;
         $result["code"] = "200";
         $result["success"] = true;
-        $result["msg"] = "请求成功";
+        $result["message"] = "请求成功";
 
         $response = new WP_REST_Response($result, 200);
         return $response;
@@ -66,27 +71,23 @@ class Article extends WP_REST_Controller{
         $query_params = $request->get_query_params();
         $id = $query_params['id'];
 
-        if (empty($id)) {
-            $error["code"] = "10001";
-            $error["msg"] = "文章id参数不存在";
-            $error["data"] = "";
-            return new WP_Error($error);
-        }
-
         $post = get_post($id);
         $postId = $post->ID;
 
-        if (empty($postId)) {
-            $error["code"] = "20001";
-            $error["msg"] = "文章不存在";
-            $error["data"] = "";
-            return new WP_Error($error);
+        if (empty($post) || empty($postId)) {
+            // $error["code"] = "20001";
+            // $error["message"] = "文章不存在";
+            // $error["data"] = "";
+            return new WP_Error("20001", "文章不存在", "");
         }
         $authorId = $post->post_author;
         $user = get_user_by('id', $authorId);
-        $author_name = $user->display_name || $user->user_nicename;
+        $author_name = $user->data->display_name ?: $user->data->user_nicename;
 
-        $data["id"] = $post->ID;
+        $tags = $this->fmt_data(get_the_tags($postId)); // term_id、name
+        $categories = $this->fmt_data(get_the_category($postId)); // term_id、name
+
+        $data["id"] = $postId;
         $data["title"] = $post->post_title;
         $data["content"] = $post->post_content;
         $data["excerpt"] = $post->post_excerpt;
@@ -94,13 +95,13 @@ class Article extends WP_REST_Controller{
         $data["authorId"] = $authorId;
         $data["author"] = $author_name;
         $data["commentCount"] = (int)$post->comment_count;
-        $data["categories"] = $post->categories;
-        $data["tags"] = $post->tags;
+        $data["categories"] = $categories;
+        $data["tags"] = $tags;
 
         $result["data"] = $data;
         $result["code"] = "200";
         $result["success"] = true;
-        $result["msg"] = "请求成功";
+        $result["message"] = "请求成功";
 
         $response = new WP_REST_Response($result, 200);
         return $response;
@@ -116,6 +117,30 @@ class Article extends WP_REST_Controller{
             return $image[0];
         } else {
             return '';
+        }
+    }
+
+    // 格式化数据
+    private function fmt_data($arr) {
+        if (!empty($arr)) {
+            // $new_arr = array();
+            // foreach ($arr as $val) {
+            //     $cur_info["id"] = $val->term_id;
+            //     $cur_info["name"] = $val->name;
+            //     array_push($new_arr, $cur_info);
+            // }
+            // return $new_arr;
+
+            foreach ($arr as $val) {
+                $list[] = array(
+                    "id" => $val->term_id,
+                    "name" => $val->name,
+                );
+            }
+
+            return $list;
+        } else {
+            return [];
         }
     }
 }
