@@ -59,7 +59,6 @@ class Article extends WP_REST_Controller{
 
         $result["data"] = $data;
         $result["code"] = "200";
-        $result["success"] = true;
         $result["message"] = "请求成功";
 
         $response = new WP_REST_Response($result, 200);
@@ -100,7 +99,6 @@ class Article extends WP_REST_Controller{
 
         $result["data"] = $data;
         $result["code"] = "200";
-        $result["success"] = true;
         $result["message"] = "请求成功";
 
         $response = new WP_REST_Response($result, 200);

@@ -21,7 +21,6 @@
 ```json
 {
   "code": "200",
-  "success": true,
   "msg": "请求成功",
   "data": {
     "list": [
@@ -54,7 +53,6 @@
 ```json
 {
   "code": "200",
-  "success": true,
   "msg": "请求成功",
   "data": {
     "id": 1,

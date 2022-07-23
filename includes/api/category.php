@@ -13,11 +13,18 @@ class Category extends WP_REST_Controller{
 
     // 获取分类列表
     public function get_all_category($request) {
-        $categories = get_categories();
+        $query_params = $request->get_query_params();
+        // 注意 query 里的参数会被转成字符串
+        $hide_empty = ($query_params['hideEmpty'] === 'true') ? true : false;
+
+        $args = array(
+            "hide_empty" => $hide_empty, // 是否隐藏空内容的分类
+        );
+        $categories = get_categories($args);
 
         foreach ( $categories as $cate ) {
             $list[] = array(
-                "id" => $cate->id,
+                "id" => $cate->term_id,
                 "name" => $cate->name,
                 "description" => $cate->description,
                 "count" => $cate->count,
