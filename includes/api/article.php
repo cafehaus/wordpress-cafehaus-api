@@ -24,8 +24,8 @@ class Article extends WP_REST_Controller{
     // 获取文章列表
     public function get_articles($request) {
         $query_params = $request->get_query_params();
-        $page = $query_params['page'] ?: 1;
-        $posts_per_page = $query_params['size'] ?: 10;
+        $page = (int)$query_params['page'] ?: 1;
+        $posts_per_page = (int)$query_params['size'] ?: 10;
 
         $args = array(
             'posts_per_page'    => $posts_per_page,

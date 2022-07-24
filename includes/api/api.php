@@ -1,6 +1,7 @@
 <?php
 include_once( 'article.php' );
 include_once( 'category.php' );
+include_once( 'm_comment.php' );
 
 class CAFE_API extends WP_REST_Controller{
     public function __construct() {
@@ -14,6 +15,7 @@ class CAFE_API extends WP_REST_Controller{
         $api_list = array(
             'Article',
             'Category',
+            'M_Comment',
         );
         foreach ( $api_list as $api ) {
             $this->$api = new $api();
