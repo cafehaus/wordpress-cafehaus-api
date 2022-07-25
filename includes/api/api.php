@@ -1,6 +1,6 @@
 <?php
-include_once( 'article.php' );
-include_once( 'category.php' );
+include_once( 'm_article.php' );
+include_once( 'm_category.php' );
 include_once( 'm_comment.php' );
 
 class CAFE_API extends WP_REST_Controller{
@@ -13,8 +13,8 @@ class CAFE_API extends WP_REST_Controller{
 
     public function register_my_routes() {
         $api_list = array(
-            'Article',
-            'Category',
+            'M_Article',
+            'M_Category',
             'M_Comment',
         );
         foreach ( $api_list as $api ) {

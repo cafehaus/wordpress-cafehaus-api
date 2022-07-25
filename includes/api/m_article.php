@@ -1,6 +1,6 @@
 <?php
 
-class Article extends WP_REST_Controller{
+class M_Article extends WP_REST_Controller{
     public function __construct() {
         $this->namespace = 'cafe/v1';
     }

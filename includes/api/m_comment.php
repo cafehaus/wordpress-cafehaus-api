@@ -19,7 +19,7 @@ class M_Comment extends WP_REST_Controller{
         $size = (int)$query_params['size'] ?: 10;
         // $pre = $size * ($page - 1);
         // $sql = $wpdb->prepare("select * from wp_comments where comment_approved='1' AND comment_ID >= (select comment_ID from wp_comments where comment_approved='1' order by comment_ID limit ".$pre.", 1) limit ".$size.";");
-        // $comments = $wpdb->get_results($sql); 
+        // $comments = $wpdb->get_results($sql);
 
         // @type bool  $no_found_rows  Whether to disable the `SQL_CALC_FOUND_ROWS` query. Default: true.
         // no_found_rows 是否禁止 SQL_CALC_FOUND_ROWS 查询，这玩意儿就是用来计算总条数的，据说性能不高，默认 true 被禁止了，所以 max_num_pages、found_comments 就不会被设置
