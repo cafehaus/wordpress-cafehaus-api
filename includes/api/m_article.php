@@ -41,8 +41,10 @@ class M_Article extends WP_REST_Controller{
 
         foreach ( $posts as $post ) {
             $id = $post->ID;
+            $content = $post->post_content; // 去提取内容里的图片
+
             // 注意：类自身的方法要通过 $this 去调用
-            $img = $this->get_article_img($id);
+            $img = $this->get_article_img($id, $content);
             $list[] = array(
                 "id" => $id,
                 "title" => $post->post_title,
