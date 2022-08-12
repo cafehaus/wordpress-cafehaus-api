@@ -1,5 +1,21 @@
-# REST API WP CAFE
-支持多端前后端分离开发的 REST API 接口
+# WORDPRESS CAFE API
+支持多端前后端分离开发的一套 REST API 接口，苦于 wordpress 官方提供的 REST API 接口数据格式前端比较难用，所以自己开发了一套
+
+## 接口特点
+* 统一接口数据返回格式：code、data、message，方便前端做统一拦截处理
+* 统一分页查询数据，直接在数据中返回总条数和总页，方便前端做分页和判断是否到最后一页
+* 统一接口入参、出参变量名，字段名全部统一小驼峰命名
+* 去掉接口中无用的数据，官方的 REST API 接口中返回了很多无用的字段，部分字段前端根本用不上
+
+## 相关项目
+[wordpress-cafe-api](https://github.com/cafehaus/wordpress-cafe-api)
+[wordpress-uniapp](https://github.com/cafehaus/wordpress-uniapp)
+[wordpress-taro](https://github.com/cafehaus/wordpress-taro)
+[wordpress-flutter](https://github.com/cafehaus/wordpress-flutter)
+[wordpress-vue](https://github.com/cafehaus/wordpress-vue)
+[wordpress-react](https://github.com/cafehaus/wordpress-react)
+[wordpress-angular](https://github.com/cafehaus/wordpress-angular)
+[wordpress-electron](https://github.com/cafehaus/wordpress-electron)
 
 ## 参考文档
 [REST API Handbook](https://developer.wordpress.org/rest-api/)
@@ -21,7 +37,7 @@
 ```json
 {
   "code": "200",
-  "msg": "请求成功",
+  "message": "请求成功",
   "data": {
     "list": [
       {
@@ -53,7 +69,7 @@
 ```json
 {
   "code": "200",
-  "msg": "请求成功",
+  "message": "请求成功",
   "data": {
     "id": 1,
     "title": "我是文章标题",
@@ -88,7 +104,7 @@
 ```json
 {
   "code": "200",
-  "msg": "请求成功",
+  "message": "请求成功",
   "data": [
     {
       "id": 1,
@@ -116,7 +132,7 @@
 ```json
 {
   "code": "200",
-  "msg": "请求成功",
+  "message": "请求成功",
   "data": {
     "list": [
       {
@@ -151,7 +167,7 @@
 ```json
 {
   "code": "200",
-  "msg": "请求成功",
+  "message": "请求成功",
   "data": {
     "list": [
       {
