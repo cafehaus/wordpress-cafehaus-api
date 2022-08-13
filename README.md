@@ -8,14 +8,21 @@
 * 去掉接口中无用的数据，官方的 REST API 接口中返回了很多无用的字段，部分字段前端根本用不上
 
 ## 相关项目
-[wordpress-cafe-api](https://github.com/cafehaus/wordpress-cafe-api)
-[wordpress-uniapp](https://github.com/cafehaus/wordpress-uniapp)
-[wordpress-taro](https://github.com/cafehaus/wordpress-taro)
-[wordpress-flutter](https://github.com/cafehaus/wordpress-flutter)
-[wordpress-vue](https://github.com/cafehaus/wordpress-vue)
-[wordpress-react](https://github.com/cafehaus/wordpress-react)
-[wordpress-angular](https://github.com/cafehaus/wordpress-angular)
-[wordpress-electron](https://github.com/cafehaus/wordpress-electron)
+* [wordpress-uniapp](https://github.com/cafehaus/wordpress-uniapp)
+* [wordpress-taro](https://github.com/cafehaus/wordpress-taro)
+* [wordpress-flutter](https://github.com/cafehaus/wordpress-flutter)
+* [wordpress-vue](https://github.com/cafehaus/wordpress-vue)
+* [wordpress-react](https://github.com/cafehaus/wordpress-react)
+* [wordpress-angular](https://github.com/cafehaus/wordpress-angular)
+* [wordpress-electron](https://github.com/cafehaus/wordpress-electron)
+* [wordpress-nuxt](https://github.com/cafehaus/wordpress-nuxt)
+* [wordpress-nest](https://github.com/cafehaus/wordpress-nest)
+
+## 加个好友
+* 微信：cafe-haus
+* [微博](https://weibo.com/u/3503148914)
+* [知乎](https://www.zhihu.com/people/ka-fei-jiao-shi)
+* [B站](https://space.bilibili.com/25400077/)
 
 ## 参考文档
 [REST API Handbook](https://developer.wordpress.org/rest-api/)
