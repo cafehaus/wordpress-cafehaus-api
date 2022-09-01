@@ -23,16 +23,35 @@ class M_Article extends WP_REST_Controller{
 
     // 获取文章列表
     public function get_articles($request) {
+        // https://developer.wordpress.org/reference/classes/wp_query/
         $query_params = $request->get_query_params();
         $page = (int)$query_params['page'] ?: 1;
         $posts_per_page = (int)$query_params['size'] ?: 10;
+        $post_type = $query_params['postType'] ?: 'post'; // post, page
+        $post_status = $query_params['postStatus'] ?: 'publish'; // publish, future, draft, pending, private, trash
+        $orderby = $query_params['orderby'] ?: 'date'; // ID, date, modified, rand, comment_count
+        $order = $query_params['order'] ?: 'DESC'; // DESC, ASC
 
         $args = array(
             'posts_per_page'    => $posts_per_page,
             'paged'             => $page,
-            'orderby'           => 'date',
-            'order'             => 'desc',
+            'post_type'         =>  $post_type,
+            'post_status'       =>  $post_status,
+            'orderby'           =>  $orderby,
+            'order'             =>  $order
         );
+        if (!empty($query_params['title'])) { // 文章标题，可用来做搜索
+            $args['title'] = $query_params['title'];
+        }
+        if (!empty($query_params['authorId'])) { // 文章作者
+            $args['author'] = $query_params['authorId'];
+        }
+        if (!empty($query_params['cateId'])) { // 分类id
+            $args['cat'] = (int)$query_params['cateId'];
+        }
+        if (!empty($query_params['tagId'])) { // 标签id
+            $args['tag_id'] = (int)$query_params['tagId'];
+        }
 
         $query = new WP_Query( $args );
         $max_pages = $query->max_num_pages;
