@@ -1,6 +1,7 @@
 <?php
 include_once( 'm_article.php' );
 include_once( 'm_category.php' );
+include_once( 'm_tag.php' );
 include_once( 'm_comment.php' );
 include_once( 'm_user.php' );
 
@@ -16,6 +17,7 @@ class CAFE_API extends WP_REST_Controller{
         $api_list = array(
             'M_Article',
             'M_Category',
+            'M_Tag',
             'M_Comment',
             'M_User',
         );

@@ -37,13 +37,13 @@
 
 | 名称        | 位置   | 类型   | 必填 | 备注 |
 | ----        | ----   | ----   | ---- | ---- |
-| page        | query  | number | N    | 页码：默认 1    |
-| size        | query  | number | N    | 页数：默认 10    |
-| postType    | query  | string | N    | 类型：post, page    |
+| page        | query  | number | N    | 分页页码：默认 1    |
+| size        | query  | number | N    | 分页条数：默认 10              |
+| postType    | query  | string | N    | 类型：post, page ，默认 post   |
 | postStatus  | query  | string | N    | 状态：publish, future, draft, pending, private, trash    |
 | orderby     | query  | string | N    | 排序：date, ID, modified, rand, comment_count    |
 | order       | query  | string | N    | 升降序：DESC, ASC  |
-| title       | query  | string | N    | 标题    |
+| title       | query  | string | N    | 标题，可用来做搜索      |
 | authorId    | query  | number | N    | 作者id    |
 | cateId      | query  | number | N    | 分类id    |
 | tagId       | query  | number | N    | 标签id    |
@@ -111,8 +111,8 @@
 * 请求方式：GET
 * 请求参数
 
-| 名称       | 位置   | 类型   | 必填 | 备注                  |
-| ----       | ----   | ----   | ---- | ----                  |
+| 名称        | 位置   | 类型    | 必填  | 备注               |
+| ----       | ----   | ----   | ---- | ----               |
 | hideEmpty  | query  | boolean| N    | 是否隐藏空内容分类    |
 
 * 返回结果
@@ -138,10 +138,10 @@
 * 请求方式：GET
 * 请求参数
 
-| 名称  | 位置   | 类型   | 必填 | 备注 |
-| ----  | ----   | ----   | ---- | ---- |
-| page  | query  | number | N    | -    |
-| size  | query  | number | N    | -    |
+| 名称   | 位置   | 类型    | 必填   | 备注 |
+| ----  | ----   | ----   | ----  | ---- |
+| page  | query  | number | N     | 分页页码，默认 1    |
+| size  | query  | number | N     | 分页条数，默认 10   |
 
 * 返回结果
 ```json
@@ -173,10 +173,10 @@
 * 请求方式：GET
 * 请求参数
 
-| 名称  | 位置   | 类型   | 必填 | 备注 |
-| ----  | ----   | ----   | ---- | ---- |
-| page  | query  | number | N    | -    |
-| size  | query  | number | N    | -    |
+| 名称   | 位置   | 类型    | 必填   | 备注 |
+| ----  | ----   | ----   | ----  | ---- |
+| page  | query  | number | N     | 分页页码，默认 1    |
+| size  | query  | number | N     | 分页条数，默认 10   |
 
 * 返回结果
 ```json
@@ -191,6 +191,43 @@
         "date": "2022-07-01 12:12:34", // 注册时期
         "roleId": "administrator",
         "roleName": "管理员", // administrator-管理员 editor-编辑 author-作者 contributor-贡献者 subscriber-订阅者
+      }
+    ],
+    "total": 1,
+    "totalPages": 1,
+    "page": 1,
+    "size": 10,
+  }
+}
+```
+
+### 五、标签模块
+#### 1、获取标签列表
+* 请求地址：/wp-json/cafe/v1/tags
+* 请求方式：GET
+* 请求参数
+
+| 名称         | 位置   | 类型    | 必填   | 备注 |
+| ----        | ----   | ----   | ----  | ---- |
+| page        | query  | number | N     | 分页页码，默认 1    |
+| size        | query  | number | N     | 分页条数，默认 10   |
+| hideEmpty   | query  | boolean| N     | 是否隐藏没有文章的标签，默认 false    |
+| orderby     | query  | string | N     | 排序：name, slug, count，默认 name    |
+| order       | query  | string | N     | 升降序：DESC, ASC，默认 ASC |
+
+* 返回结果
+```json
+{
+  "code": "200",
+  "message": "请求成功",
+  "data": {
+    "list": [
+      {
+        "id": 1, // 标签 id
+        "name": "我是标签名",
+        "slug": "我是标签别名",
+        "description": "我是标签描述",
+        "count": 2, // 标签下的文章数
       }
     ],
     "total": 1,
