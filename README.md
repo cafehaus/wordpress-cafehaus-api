@@ -1,31 +1,32 @@
-# WORDPRESS CAFE API
-支持多端前后端分离开发的一套 API 接口，苦于 wordpress 官方提供的 REST API 接口数据格式前端比较难用，所以自己开发了一套
+# CAFE API
+兼容小程序、APP和H5的多端 API 插件，提供更加优雅的路由、入参和出参，开箱即用零依赖零设置，让前端用着更省心
+
+## 使用插件
+下载本插件代码，直接压缩，然后进入你的 WordPress 管理后台 - 安装插件 - 上传安装即可使用
 
 ## 接口特点
-* 兼容小程序、app和H5，由于多端兼容，只提供 GET 和 POST 请求
-* 开箱即用，不依赖任何外部平台和设置
-* 提供用户注册、登录、修改密码、修改个人资料和评论功能，注意登录功能并未提供任何安全验证，站点如有敏感操作不建议使用
-* 请求路径、入参、出参尽量跟官方的 WordPress REST API 保持一致，不合理的地方提供额外的优化方式
-* 文章列表提供特色图和文章内容里解析出的图片地址数组，可实现不同形式的图文列表展示形式
-* 比如获取文章详情，官方 API 在请求路径后面拼上了文章id参数，前端一些框架需额外处理，所以既支持官方的，还额外提供在query里传id的方式
-* 优化返回数据格式，根据前端渲染实现原理处理数据层级，分类列表和文章的评论列表既可以直接返回数组，也可以通过参数返回树形结构，方便各端直接渲染，不用再额外处理数据
+* 兼容小程序、APP和H5的多端 API 插件，提供更加优雅的路由、入参和出参，开箱即用零依赖零设置
 * 统一接口数据返回格式：code、data、message，方便前端做统一拦截处理
 * 统一分页查询数据，直接在数据中返回总条数和总页，方便前端做分页和判断是否到最后一页
 * 统一接口入参、出参变量名，字段名全部统一小驼峰命名
-* 去掉接口中无用的数据，官方的 REST API 接口中返回了很多无用的字段，部分字段前端根本用不上，浪费流量
-* 无破坏性，接口功能未使用 Hooks 和 Filters，全部新加路由实现，和官方的 WordPress REST API 互不影响
+* 去掉接口中无用的数据，官方的 REST API 接口中返回了很多无用的字段，优化数据层级，提供树形数据
 * 本插件可实现的前端功能汇总：登录、注册、修改密码、修改个人资料、发表评论、文章列表、文章详情、文章查询、文章归档、轮播(取置顶文章)、分类列表、标签列表、用户列表、页面列表
-* WordPress REST API 官方部分的请求参数和功能根据自己平时遇到的一些场景并未提供，可能有遗漏的地方，欢迎大家提 issue 和 纠错
+* 无破坏性，接口功能未使用 Hooks 和 Filters，全部新加路由实现，和官方的 WordPress REST API 互不影响
+* WordPress REST API 官方部分的请求参数和功能根据自己平时遇到的场景并未提供，可能有遗漏的地方，欢迎大家提 issue 和 纠错
 
-## 计划TODO功能
+## 计划中的功能
 * 按日期范围筛选文章
 * 按文章形式筛选文章
 * 增删改相关的操作
+* 文章详情前一篇和后一篇
+* 用户登录 token 验证
 
 ## 相关项目
 * [wordpress-uniapp](https://github.com/cafehaus/wordpress-uniapp)
 * [wordpress-taro](https://github.com/cafehaus/wordpress-taro)
 * [wordpress-flutter](https://github.com/cafehaus/wordpress-flutter)
+* [wordpress-ios](https://github.com/cafehaus/wordpress-ios)
+* [wordpress-android](https://github.com/cafehaus/wordpress-android)
 * [wordpress-vue](https://github.com/cafehaus/wordpress-vue)
 * [wordpress-react](https://github.com/cafehaus/wordpress-react)
 * [wordpress-angular](https://github.com/cafehaus/wordpress-angular)
