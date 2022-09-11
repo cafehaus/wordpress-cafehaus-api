@@ -17,6 +17,9 @@ class M_Category extends WP_REST_Controller{
         // 注意 query 里的参数会被转成字符串
         $hide_empty = ($query_params['hideEmpty'] === 'true') ? true : false;
 
+        // 是否要格式化成树形数据
+        $tree = ($query_params['tree'] === 'false') ? false : true;
+
         $args = array(
             "hide_empty" => $hide_empty, // 是否隐藏空内容的分类
         );
@@ -32,6 +35,10 @@ class M_Category extends WP_REST_Controller{
             );
         }
 
+        if ($tree) {
+            $list = $this->fmt_tree($list);
+        }
+
         $result["data"] = $list;
         $result["code"] = "200";
         $result["success"] = true;
@@ -39,5 +46,19 @@ class M_Category extends WP_REST_Controller{
 
         $response = new WP_REST_Response($result, 200);
         return $response;
+    }
+
+    private function fmt_tree($arr, $pid = '0') {
+        $tree = array();
+        foreach ($arr as $key => $value) {
+            if ($value['parent'] == $pid) {
+                $value['children'] = $this->fmt_tree($arr, $value['id']);
+                if (!$value['children']) {
+                    unset($value['children']);
+                }
+                $tree[] = $value;
+            }
+        }
+        return $tree;
     }
 }
