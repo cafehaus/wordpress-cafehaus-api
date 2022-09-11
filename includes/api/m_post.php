@@ -1,16 +1,16 @@
 <?php
 
-class M_Article extends WP_REST_Controller{
+class M_Post extends WP_REST_Controller{
     public function __construct() {
         $this->namespace = 'cafe/v1';
     }
     public function init() {
-        register_rest_route( $this->namespace, 'articles', [
+        register_rest_route( $this->namespace, 'posts', [
             'methods'   => 'GET',
             'callback'  =>  array( $this, 'get_articles' ),
         ] );
         // register_rest_route( $this->namespace, 'article/(?P<id>[\d]+)', [
-        register_rest_route( $this->namespace, 'article', [
+        register_rest_route( $this->namespace, 'post', [
             'methods'   => 'GET',
             'callback'  =>  array( $this, 'get_article_Detail' ),
             'args'      => array(
@@ -18,7 +18,7 @@ class M_Article extends WP_REST_Controller{
                     'required' => true
                 ),
             )
-        ] );
+        ]);
     }
 
     // 获取文章列表

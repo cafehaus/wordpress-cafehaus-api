@@ -1,5 +1,5 @@
 <?php
-include_once( 'm_article.php' );
+include_once( 'm_post.php' );
 include_once( 'm_category.php' );
 include_once( 'm_tag.php' );
 include_once( 'm_comment.php' );
@@ -15,7 +15,7 @@ class CAFE_API extends WP_REST_Controller{
 
     public function register_my_routes() {
         $api_list = array(
-            'M_Article',
+            'M_Post',
             'M_Category',
             'M_Tag',
             'M_Comment',
