@@ -26,7 +26,7 @@ class M_Tag extends WP_REST_Controller{
             'hide_empty' => $hide_empty, // for development
             'orderby'    => $orderby, // 排序 count name
             'order'      => $order,
-            // 'count'      => true, // 默认就是true，是否计算总数
+            // 'count'      => true, // 是否计算总数，实际测试无效
             'number'     => $size,
             'offset'     => ($page - 1) * $size,
         );
