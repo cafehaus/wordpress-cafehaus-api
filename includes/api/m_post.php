@@ -8,11 +8,14 @@ class M_Post extends WP_REST_Controller{
         register_rest_route( $this->namespace, 'posts', [
             'methods'   => 'GET',
             'callback'  =>  array( $this, 'get_articles' ),
-        ] );
-        // register_rest_route( $this->namespace, 'article/(?P<id>[\d]+)', [
+        ]);
+        register_rest_route( $this->namespace, 'post/(?P<id>[\d]+)', [
+            'methods'   => 'GET',
+            'callback'  =>  array( $this, 'get_detail_by_url' ),
+        ]);
         register_rest_route( $this->namespace, 'post', [
             'methods'   => 'GET',
-            'callback'  =>  array( $this, 'get_article_Detail' ),
+            'callback'  =>  array( $this, 'get_Detail' ),
             'args'      => array(
                 'id' => array(
                     'required' => true
@@ -140,8 +143,8 @@ class M_Post extends WP_REST_Controller{
         return $response;
     }
 
-    // 获取文章详情
-    public function get_article_Detail($request) {
+    // 获取文章详情: 通过 id 参数
+    public function get_detail($request) {
         $query_params = $request->get_query_params();
         $id = $query_params['id'];
 
@@ -151,6 +154,34 @@ class M_Post extends WP_REST_Controller{
         if (empty($post) || empty($postId)) {
             return new WP_Error(20001, "文章不存在", "");
         }
+
+        $result["data"] = $this->fmt_detail_data($post, $postId);
+        $result["code"] = "200";
+        $result["message"] = "请求成功";
+
+        $response = new WP_REST_Response($result, 200);
+        return $response;
+    }
+
+    // 获取文章详情：通过路径传参
+    public function get_detail_by_url($request) {
+        $id = (int) $request['id'];
+        $post = get_post($id);
+        $postId = $post->ID;
+
+        if (empty($post) || empty($postId)) {
+            return new WP_Error(20001, "文章不存在", "");
+        }
+
+        $result["data"] = $this->fmt_detail_data($post, $postId);
+        $result["code"] = "200";
+        $result["message"] = "请求成功";
+
+        $response = new WP_REST_Response($result, 200);
+        return $response;
+    }
+
+    private function fmt_detail_data($post, $postId) {
         $authorId = $post->post_author;
         $user = get_user_by('id', $authorId);
         $author_name = $user->data->display_name ?: $user->data->user_nicename;
@@ -174,12 +205,7 @@ class M_Post extends WP_REST_Controller{
         $data["categories"] = $categories;
         $data["tags"] = $tags;
 
-        $result["data"] = $data;
-        $result["code"] = "200";
-        $result["message"] = "请求成功";
-
-        $response = new WP_REST_Response($result, 200);
-        return $response;
+        return $data;
     }
 
     // 获取文章特色图
