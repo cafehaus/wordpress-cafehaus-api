@@ -113,7 +113,7 @@ class M_Post extends WP_REST_Controller{
             $content = $post->post_content; // 去提取内容里的图片
 
             // 注意：类自身的方法要通过 $this 去调用
-            $img = $this->get_article_img($id, $content);
+            $img = $this->get_article_img($id);
             $imgs = $this->get_html_images($content);
 
             $list[] = array(
@@ -145,6 +145,10 @@ class M_Post extends WP_REST_Controller{
 
     // 获取文章详情: 通过 id 参数
     public function get_detail($request) {
+        // get_next_post() 和 get_previous_post()：Null if global $post is not set
+        // 获取前后文函数里有用到 $post，不 global 一下，会直接返回 null
+        global $post;
+
         $query_params = $request->get_query_params();
         $id = $query_params['id'];
 
@@ -165,6 +169,10 @@ class M_Post extends WP_REST_Controller{
 
     // 获取文章详情：通过路径传参
     public function get_detail_by_url($request) {
+        // get_next_post() 和 get_previous_post()：Null if global $post is not set
+        // 获取前后文函数里有用到 $post，不 global 一下，会直接返回 null
+        global $post;
+
         $id = (int) $request['id'];
         $post = get_post($id);
         $postId = $post->ID;
@@ -189,6 +197,36 @@ class M_Post extends WP_REST_Controller{
         $tags = $this->fmt_data(get_the_tags($postId)); // term_id、name
         $categories = $this->fmt_data(get_the_category($postId)); // term_id、name
 
+        // 获取前后文
+        // get_adjacent_post()
+        // get_next_post
+        // get_previous_post
+        $next = get_next_post();
+        $nextId = $next->ID;
+        $next_post = null;
+        if (!empty($nextId)) {
+            $nextContent = $next->post_content;
+            $next_post = array(
+                "id"      =>  $nextId,
+                "title"   =>  $next->post_title,
+                "img"     =>  $this->get_article_img($nextId, $nextContent),
+                // "imgs"    =>  $this->get_html_images($nextContent),
+            );
+        }
+
+        $previous = get_previous_post();
+        $previousId = $previous->ID;
+        $previous_post = null;
+        if (!empty($previousId)) {
+            $previousContent = $previous->post_content;
+            $previous_post = array(
+                "id"      =>  $previousId,
+                "title"   =>  $previous->post_title,
+                "img"     =>  $this->get_article_img($previousId, $previousContent),
+                // "imgs"    =>  $this->get_html_images($previousContent),
+            );
+        }
+
         $data["id"] = $postId;
         $data["title"] = $post->post_title;
         $data["content"] = $post->post_content;
@@ -204,12 +242,16 @@ class M_Post extends WP_REST_Controller{
         $data["type"] = $post->post_type; // 文章类型
         $data["categories"] = $categories;
         $data["tags"] = $tags;
+        $data["nextPost"] = $next_post; // 后一篇文章
+        $data["previousPost"] = $previous_post; // 前一篇文章
 
         return $data;
     }
 
     // 获取文章特色图
-    private function get_article_img($postId) {
+    // $postId 文章ID，必传参数
+    // $content 文章内容，可选参数，传了如果没有特色图，会默认去内容中提取图片地址
+    private function get_article_img($postId, $content) {
         //获取缩略的ID
         $imgId = get_post_thumbnail_id($postId);
         if (!empty($imgId)) {
@@ -217,7 +259,11 @@ class M_Post extends WP_REST_Controller{
             $image = wp_get_attachment_image_src($imgId, 'medium');
             return $image[0];
         } else {
-            return '';
+            if (!empty($content)) {
+                return $this->get_html_images($content, 0);
+            } else {
+                return '';
+            }
         }
     }
 
@@ -265,7 +311,7 @@ class M_Post extends WP_REST_Controller{
 
             return $list;
         } else {
-            return [];
+            return null;
         }
     }
 }

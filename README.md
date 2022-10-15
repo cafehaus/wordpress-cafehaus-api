@@ -18,7 +18,7 @@
 * 按日期范围筛选文章
 * 按文章形式筛选文章
 * 增删改相关的操作
-* 文章详情前一篇和后一篇
+* 文章详情前一篇和后一篇 (2022-10-15 已完成)
 * 用户登录 token 验证
 
 ## 相关项目
@@ -131,13 +131,23 @@
     "status": "publish", // 文章状态 publish, future, draft, pending, private
     "type": "post", // 文章类型 post, page
     "categories": [{ // 文章分类
-      "id": "22",
+      "id": 22,
       "name": "web"
     }],
     "tags": [{ // 文章标签
-      "id": "44",
+      "id": 44,
       "name": "wordpress"
     }],
+    "previousPost": { // 前一篇文章
+      "id": 12,
+      "title": "我是前一篇文章的标题",
+      "img": "https://cafe123.cn/logo.png", // 文章特色图，未设置会自动获取内容中解析出的第一张图片
+    },
+    "nextPost": { // 后一篇文章
+      "id": 14,
+      "title": "我是后一篇文章的标题",
+      "img": "https://cafe123.cn/logo.png",
+    },
   }
 }
 ```
