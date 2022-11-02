@@ -1,0 +1,15 @@
+{
+    "name": "cafehaus/cafehaus-api",
+    "description": "兼容小程序、APP和H5的多端 API 插件，提供更加优雅的路由、入参和出参，开箱即用零依赖零设置",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "cafehaus",
+            "email": "510878689@qq.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.3"
+    }
+}
