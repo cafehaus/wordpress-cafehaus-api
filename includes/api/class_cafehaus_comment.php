@@ -1,7 +1,7 @@
 <?php
 
 // 直接用 Comment 类名安装会报错
-class M_Comment extends WP_REST_Controller{
+class CAFEHAUS_Comment extends WP_REST_Controller{
     public function __construct() {
         $this->namespace = 'cafe/v1';
     }

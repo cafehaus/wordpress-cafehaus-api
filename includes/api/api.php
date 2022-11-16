@@ -1,11 +1,11 @@
 <?php
-include_once( 'm_post.php' );
-include_once( 'm_category.php' );
-include_once( 'm_tag.php' );
-include_once( 'm_comment.php' );
-include_once( 'm_user.php' );
+include_once( 'class_cafehaus_post.php' );
+include_once( 'class_cafehaus_category.php' );
+include_once( 'class_cafehaus_tag.php' );
+include_once( 'class_cafehaus_comment.php' );
+include_once( 'class_cafehaus_user.php' );
 
-class CAFE_API extends WP_REST_Controller{
+class CAFEHAUS_API extends WP_REST_Controller{
     public function __construct() {
         $this->init();
     }
@@ -15,11 +15,11 @@ class CAFE_API extends WP_REST_Controller{
 
     public function register_my_routes() {
         $api_list = array(
-            'M_Post',
-            'M_Category',
-            'M_Tag',
-            'M_Comment',
-            'M_User',
+            'CAFEHAUS_Post',
+            'CAFEHAUS_Category',
+            'CAFEHAUS_Tag',
+            'CAFEHAUS_Comment',
+            'CAFEHAUS_User',
         );
         foreach ( $api_list as $api ) {
             $this->$api = new $api();

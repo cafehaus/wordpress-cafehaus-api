@@ -1,4 +1,4 @@
-# CAFE API
+# CAFEHAUS API
 兼容小程序、APP和H5的多端 API 插件，提供更加优雅的路由、入参和出参，开箱即用零依赖零设置，让前端用着更省心
 
 ## 使用插件
@@ -84,7 +84,7 @@
         "postDate": "2022-07-01 12:12:34",
         "commentCount": 3, // 评论数
         "img": "", // 文章特色图
-        "imgs": ["https://cafe123.cn/wordpres.jpg"], // 文章内容中的所有图片地址
+        "imgs": ["https://xxx/wordpres.jpg"], // 文章内容中的所有图片地址
         "format": "standard", // 文章形式：standard, aside, chat, gallery, link, image, quote, status, video, audio
         "sticky": false, // 是否置顶，可用来加个置顶、推荐...角标
         "status": "publish", // 文章状态 publish, future, draft, pending, private
@@ -141,12 +141,12 @@
     "previousPost": { // 前一篇文章
       "id": 12,
       "title": "我是前一篇文章的标题",
-      "img": "https://cafe123.cn/logo.png", // 文章特色图，未设置会自动获取内容中解析出的第一张图片
+      "img": "https://xxx/logo.png", // 文章特色图，未设置会自动获取内容中解析出的第一张图片
     },
     "nextPost": { // 后一篇文章
       "id": 14,
       "title": "我是后一篇文章的标题",
-      "img": "https://cafe123.cn/logo.png",
+      "img": "https://xxx/logo.png",
     },
   }
 }
