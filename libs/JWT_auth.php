@@ -1,4 +1,5 @@
 <?php
+namespace cafehaus\JWT;
 require __DIR__ . '/../vendor/autoload.php';
 
 use Firebase\JWT\JWT;
@@ -8,7 +9,9 @@ use Firebase\JWT\ExpiredException;
 
 class JWTAuth {
     // 盐值
-    protected $key = 'example_key';
+    private static $key = 'example_key';
+    // 算法
+    private static $alg = 'HS256';
 
     /**
      * 生成 token
@@ -21,7 +24,7 @@ class JWTAuth {
             'exp' => time()+10800, // 过期时间，三个小时
             'data'=> ['name'=>$username,'uid'=>$id] // 携带数据
         );
-        $token = JWT::encode($payload, self::$key, 'HS256');
+        $token = JWT::encode($payload, self::$key, self::$alg);
         return $token;
     }
 
@@ -34,8 +37,9 @@ class JWTAuth {
         //校验token
         try {
             JWT::$leeway = 60; // 当前时间减去60，把时间留点余地
-            $data = (array)JWT::decode($token, new Key(self::$key, 'HS256'));
-            $result['data'] = $data['data'];
+            $data = (array)JWT::decode($token, new Key(self::$key, self::$alg));
+            // $result['data'] = $data['data'];
+            $result['data'] = $data;
             $result['message'] = 'token 验证成功';
             $result['code'] = 10000;
             return $result;
