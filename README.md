@@ -47,7 +47,7 @@
 
 ### 一、文章模块
 #### 1、获取文章列表
-* 请求地址：/wp-json/cafe/v1/posts
+* 请求地址：/wp-json/cafehaus/v1/posts
 * 请求方式：GET
 * 请求参数
 
@@ -100,8 +100,8 @@
 ```
 
 #### 2、获取文章详情
-* 请求地址1：/wp-json/cafe/v1/post
-* 请求地址2：/wp-json/cafe/v1/post/<:id>
+* 请求地址1：/wp-json/cafehaus/v1/post
+* 请求地址2：/wp-json/cafehaus/v1/post/<:id>
 * 请求方式：GET
 * 请求参数
 
@@ -154,7 +154,7 @@
 
 ### 二、分类模块
 #### 1、获取分类列表
-* 请求地址：/wp-json/cafe/v1/categories
+* 请求地址：/wp-json/cafehaus/v1/categories
 * 请求方式：GET
 * 请求参数
 
@@ -189,7 +189,7 @@
 
 ### 三、标签模块
 #### 1、获取标签列表
-* 请求地址：/wp-json/cafe/v1/tags
+* 请求地址：/wp-json/cafehaus/v1/tags
 * 请求方式：GET
 * 请求参数
 
@@ -226,7 +226,7 @@
 
 ### 四、评论模块
 #### 1、获取评论列表
-* 请求地址：/wp-json/cafe/v1/comments
+* 请求地址：/wp-json/cafehaus/v1/comments
 * 请求方式：GET
 * 请求参数
 
@@ -260,7 +260,7 @@
 ```
 
 #### 2、获取文章的评论
-* 请求地址：/wp-json/cafe/v1/post/comments
+* 请求地址：/wp-json/cafehaus/v1/post/comments
 * 请求方式：GET
 * 请求参数
 
@@ -294,7 +294,7 @@
 ```
 
 #### 3、发表文章评论
-* 请求地址：/wp-json/cafe/v1/comment/add
+* 请求地址：/wp-json/cafehaus/v1/comment/add
 * 请求方式：POST
 * 请求参数
 
@@ -317,7 +317,7 @@
 
 ### 五、用户模块
 #### 1、获取用户列表
-* 请求地址：/wp-json/cafe/v1/users
+* 请求地址：/wp-json/cafehaus/v1/users
 * 请求方式：GET
 * 请求参数
 
@@ -351,7 +351,7 @@
 ```
 
 #### 2、用户注册
-* 请求地址：/wp-json/cafe/v1/register
+* 请求地址：/wp-json/cafehaus/v1/register
 * 请求方式：POST
 * 请求参数
 
@@ -372,7 +372,7 @@
 ```
 
 #### 3、用户登录
-* 请求地址：/wp-json/cafe/v1/login
+* 请求地址：/wp-json/cafehaus/v1/login
 * 请求方式：POST
 * 请求参数
 
@@ -401,7 +401,7 @@
 ```
 
 #### 4、修改密码
-* 请求地址：/wp-json/cafe/v1/user/password/update
+* 请求地址：/wp-json/cafehaus/v1/user/password/update
 * 请求方式：POST
 * 请求参数
 
@@ -421,7 +421,7 @@
 ```
 
 #### 5、修改用户信息
-* 请求地址：/wp-json/cafe/v1/user/info/update
+* 请求地址：/wp-json/cafehaus/v1/user/info/update
 * 请求方式：POST
 * 请求参数
 

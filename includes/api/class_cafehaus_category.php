@@ -2,7 +2,7 @@
 
 class CAFEHAUS_Category extends WP_REST_Controller{
     public function __construct() {
-        $this->namespace = 'cafe/v1';
+        $this->namespace = 'cafehaus/v1';
     }
     public function init() {
         register_rest_route( $this->namespace, 'categories', [

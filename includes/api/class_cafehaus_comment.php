@@ -3,7 +3,7 @@
 // 直接用 Comment 类名安装会报错
 class CAFEHAUS_Comment extends WP_REST_Controller{
     public function __construct() {
-        $this->namespace = 'cafe/v1';
+        $this->namespace = 'cafehaus/v1';
     }
     public function init() {
         register_rest_route( $this->namespace, 'comments', [
