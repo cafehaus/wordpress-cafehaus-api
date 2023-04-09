@@ -251,7 +251,7 @@ class CAFEHAUS_Post extends WP_REST_Controller{
     // 获取文章特色图
     // $postId 文章ID，必传参数
     // $content 文章内容，可选参数，传了如果没有特色图，会默认去内容中提取图片地址
-    private function get_article_img($postId, $content) {
+    private function get_article_img($postId, $content = '') {
         //获取缩略的ID
         $imgId = get_post_thumbnail_id($postId);
         if (!empty($imgId)) {
