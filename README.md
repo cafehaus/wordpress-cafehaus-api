@@ -2,7 +2,8 @@
 兼容小程序、APP和H5的多端 API 插件，提供更加优雅的路由、入参和出参，开箱即用零依赖零设置，让前端用着更省心
 
 ## 使用插件
-下载本插件代码，直接压缩，然后进入你的 WordPress 管理后台 - 安装插件 - 上传安装即可使用
+* 1. 直接在github本项目中下载releases插件压缩包，[releases地址](https://github.com/cafehaus/wordpress-cafehaus-api/releases)
+* 2. 下载或拉取本插件源代码，自己在电脑上压缩，然后进入你的 WordPress 管理后台 - 安装插件 - 上传安装即可使用
 
 ## 接口特点
 * 兼容小程序、APP和H5的多端 API 插件，提供更加优雅的路由、入参和出参，开箱即用零依赖零设置
@@ -37,7 +38,7 @@
 ## 加个好友
 * 微信：cafe-haus
 * [微博](https://weibo.com/u/3503148914)
-* [知乎](https://www.zhihu.com/people/ka-fei-jiao-shi)
+* [知乎](https://www.zhihu.com/people/cafehaus)
 * [B站](https://space.bilibili.com/25400077/)
 
 ## 参考文档
